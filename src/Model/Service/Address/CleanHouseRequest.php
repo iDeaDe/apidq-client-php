@@ -1,0 +1,33 @@
+<?php
+
+namespace ApiDQ\Model\Service\Address;
+
+use ApiDQ\Model\BaseModel;
+
+class CleanHouseRequest extends BaseModel
+{
+    protected ?string $query = null;
+    protected ?string $countryCode = null;
+
+    public function getQuery(): ?string
+    {
+        return $this->query;
+    }
+
+    public function setQuery(?string $query): self
+    {
+        $this->query = $query;
+        return $this;
+    }
+
+    public function getCountryCode(): ?string
+    {
+        return $this->countryCode;
+    }
+
+    public function setCountryCode(?string $countryCode): self
+    {
+        $this->countryCode = $countryCode;
+        return $this;
+    }
+}
