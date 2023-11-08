@@ -3,6 +3,8 @@
 namespace ApiDQ\Resource;
 
 use ApiDQ\Exception\Service\ServiceException;
+use ApiDQ\Model\Service\Address\CleanHouseRequest;
+use ApiDQ\Model\Service\Address\CleanHouseResponse;
 use ApiDQ\Model\Service\Address\CleanIqdqResponse;
 use ApiDQ\Model\Service\Address\CleanRequest;
 use ApiDQ\Model\Service\Address\CleanResponse;
@@ -28,6 +30,22 @@ class Address extends AbstractResource
                 $cleanRequest,
             ),
             CleanResponse::class
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ServiceException
+     */
+    public function cleanHouse(CleanHouseRequest $cleanHouseRequest): CleanHouseResponse
+    {
+        return $this->send(
+            $this->createRequest(
+                'POST',
+                $this->uri->withPath('/v1/clean/house'),
+                $cleanHouseRequest
+            ),
+            CleanHouseResponse::class
         );
     }
 

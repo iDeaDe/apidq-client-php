@@ -5,7 +5,7 @@ namespace ApiDQ\Model\Service\Address;
 use ApiDQ\Model\BaseModel;
 
 /**
- * Детальная информация домой части адреса
+ * Детальная информация домовой части адреса
  */
 class HouseDetails extends BaseModel
 {
@@ -47,6 +47,14 @@ class HouseDetails extends BaseModel
     protected string $hostel = '';
 
     protected string $munit = '';
+
+    protected string $constr = '';
+
+    protected string $stead = '';
+
+    protected string $place = '';
+
+    protected ?Codes $codes = null;
 
     /**
      * @return string
@@ -387,6 +395,50 @@ class HouseDetails extends BaseModel
     public function setMunit(string $munit): self
     {
         $this->munit = $munit;
+        return $this;
+    }
+
+    public function getConstr(): string
+    {
+        return $this->constr;
+    }
+
+    public function setConstr(string $constr): self
+    {
+        $this->constr = $constr;
+        return $this;
+    }
+
+    public function getStead(): string
+    {
+        return $this->stead;
+    }
+
+    public function setStead(string $stead): self
+    {
+        $this->stead = $stead;
+        return $this;
+    }
+
+    public function getPlace(): string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(string $place): self
+    {
+        $this->place = $place;
+        return $this;
+    }
+
+    public function getCodes(): ?Codes
+    {
+        return $this->codes;
+    }
+
+    public function setCodes(?Codes $codes): self
+    {
+        $this->codes = $codes;
         return $this;
     }
 }

@@ -49,7 +49,8 @@
     "phpunit/phpunit": "^9.5",
     "php-http/curl-client": "^2.2",
     "squizlabs/php_codesniffer": "^3.6",
-    "neur0toxine/pock": "^0.10"
+    "neur0toxine/pock": "^0.10",
+    "phpdocumentor/reflection-docblock": "^5.3"
   },
   "suggest": {
     "ext-curl": "Most HTTP clients need ext-curl to work properly.",
@@ -92,6 +93,9 @@
   },
   "config": {
     "bin-dir": "vendor/bin",
-    "process-timeout": 600
+    "process-timeout": 600,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   }
 }
