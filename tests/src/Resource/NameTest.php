@@ -28,7 +28,6 @@ class NameTest extends AbstractResourceTestCase
   "middleName": "Владимирович",
   "gender": "MALE",
   "unparsedParts": [],
-  "possible": true,
   "valid": true
 }
 EOF;

@@ -20,6 +20,11 @@ class TestConfig
         return self::getenv('API_TOKEN', 'emptyToken');
     }
 
+    public static function getApiSecret(): string
+    {
+        return self::getenv('API_SECRET', 'emptySecret');
+    }
+
     /**
      * @return string
      */

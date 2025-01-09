@@ -14,7 +14,7 @@ class Suggestion extends BaseModel
      */
     protected string $result = '';
     /**
-     * Язык подсказки ISO 3661 Alpha-2 (https://www.iso.org/iso-3166-country-codes.html)
+     * Язык подсказки ISO 3166 Alpha-2 (https://www.iso.org/iso-3166-country-codes.html)
      */
     protected string $lang = '';
     /**

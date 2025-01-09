@@ -39,10 +39,6 @@ class CleanResponse extends BaseModel
      */
     protected array $unparsedParts = [];
     /**
-     * Качество: возможный
-     */
-    protected bool $possible = false;
-    /**
      * Качество: действительный
      */
     protected bool $valid = false;
@@ -171,24 +167,6 @@ class CleanResponse extends BaseModel
     public function setUnparsedParts(array $unparsedParts): self
     {
         $this->unparsedParts = $unparsedParts;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPossible(): bool
-    {
-        return $this->possible;
-    }
-
-    /**
-     * @param bool $possible
-     * @return self
-     */
-    public function setPossible(bool $possible): self
-    {
-        $this->possible = $possible;
         return $this;
     }
 

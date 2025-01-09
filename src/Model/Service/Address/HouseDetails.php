@@ -9,7 +9,6 @@ use ApiDQ\Model\BaseModel;
  */
 class HouseDetails extends BaseModel
 {
-
     protected string $fullName = '';
 
     protected string $floor = '';
@@ -24,9 +23,15 @@ class HouseDetails extends BaseModel
 
     protected string $lend = '';
 
+    protected string $constr = '';
+
+    protected string $stead = '';
+
     protected string $block = '';
 
     protected string $pav = '';
+
+    protected string $place = '';
 
     protected string $flat = '';
 
@@ -36,17 +41,14 @@ class HouseDetails extends BaseModel
 
     protected string $abon = '';
 
-    protected string $plot = '';
-
     protected string $sek = '';
 
     protected string $entr = '';
 
     protected string $room = '';
 
-    protected string $hostel = '';
-
     protected string $munit = '';
+    protected ?Codes $codes = null;
 
     /**
      * @return string
@@ -174,6 +176,28 @@ class HouseDetails extends BaseModel
         return $this;
     }
 
+    public function getConstr(): string
+    {
+        return $this->constr;
+    }
+
+    public function setConstr(string $constr): self
+    {
+        $this->constr = $constr;
+        return $this;
+    }
+
+    public function getStead(): string
+    {
+        return $this->stead;
+    }
+
+    public function setStead(string $stead): self
+    {
+        $this->stead = $stead;
+        return $this;
+    }
+
     /**
      * @return string
      */
@@ -207,6 +231,17 @@ class HouseDetails extends BaseModel
     public function setPav(string $pav): self
     {
         $this->pav = $pav;
+        return $this;
+    }
+
+    public function getPlace(): string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(string $place): self
+    {
+        $this->place = $place;
         return $this;
     }
 
@@ -285,24 +320,6 @@ class HouseDetails extends BaseModel
     /**
      * @return string
      */
-    public function getPlot(): string
-    {
-        return $this->plot;
-    }
-
-    /**
-     * @param string $plot
-     * @return self
-     */
-    public function setPlot(string $plot): self
-    {
-        $this->plot = $plot;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getSek(): string
     {
         return $this->sek;
@@ -357,24 +374,6 @@ class HouseDetails extends BaseModel
     /**
      * @return string
      */
-    public function getHostel(): string
-    {
-        return $this->hostel;
-    }
-
-    /**
-     * @param string $hostel
-     * @return self
-     */
-    public function setHostel(string $hostel): self
-    {
-        $this->hostel = $hostel;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getMunit(): string
     {
         return $this->munit;
@@ -387,6 +386,17 @@ class HouseDetails extends BaseModel
     public function setMunit(string $munit): self
     {
         $this->munit = $munit;
+        return $this;
+    }
+
+    public function getCodes(): ?Codes
+    {
+        return $this->codes;
+    }
+
+    public function setCodes(?Codes $codes): self
+    {
+        $this->codes = $codes;
         return $this;
     }
 }
