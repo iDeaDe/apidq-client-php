@@ -22,14 +22,14 @@ Follow those steps to install the library:
 2. Install the library from the Packagist by executing this command:
 
 ```bash
-composer require apiship/apidq-client-php:"~1.0"
+composer require apiship/apidq-client-php:"~2.0"
 ```
 
 **Note:** API client uses `php-http/client-implementation` as a PSR-18, PSR-17 implementation. You can replace those
 implementations during installation by installing this library with the implementation of your choice, like this:
 
 ```sh
-composer require symfony/http-client guzzlehttp/psr7 apiship/apidq-client-php:"~1.0"
+composer require symfony/http-client guzzlehttp/psr7 apiship/apidq-client-php:"~2.0"
 ```
 
 ## Usage

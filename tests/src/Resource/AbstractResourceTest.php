@@ -11,7 +11,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 class AbstractResourceTest extends AbstractResourceTestCase
 {
-
     /**
      * @throws ClientExceptionInterface
      */

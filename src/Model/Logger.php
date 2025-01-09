@@ -8,7 +8,6 @@ use Psr\Log\LoggerInterface;
 
 class Logger
 {
-
     public const LOGGER_SCOPE_TRANSPORT = 'transport';
     public const LOGGER_SCOPE_FILE_CACHE = 'fileCache';
 

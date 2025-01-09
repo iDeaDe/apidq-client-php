@@ -12,7 +12,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 class NameTest extends AbstractResourceTestCase
 {
-
     /**
      * @throws ClientExceptionInterface
      * @throws ServiceException

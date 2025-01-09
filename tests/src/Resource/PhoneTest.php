@@ -11,7 +11,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 class PhoneTest extends AbstractResourceTestCase
 {
-
     /**
      * @throws ClientExceptionInterface
      * @throws ServiceException

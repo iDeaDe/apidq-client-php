@@ -17,7 +17,6 @@ use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 
 class AddressTest extends AbstractResourceTestCase
 {
-
     /**
      * @throws ClientExceptionInterface
      * @throws ServiceException
@@ -188,93 +187,6 @@ EOF;
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->address->clean($request);
         self::assertEquals($request->getQuery(), $response->getOriginal());
-        $rspJson = static::$serializer->serialize($response, 'json');
-        self::assertJsonStringEqualsJsonString($json, $rspJson);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws ServiceException
-     */
-    public function testCleanIqdq(): void
-    {
-        $json = <<<'EOF'
-{
-  "c_ischeck": "1",
-  "c_index_in": "",
-  "c_zipcode": "105082",
-  "c_address_original": "москва спартаковская 10с12",
-  "c_address_full": "г Москва, пл Спартаковская",
-  "c_kladr": "",
-  "c_gaCode": "",
-  "c_country": "Россия",
-  "c_country_iso_code": "RU",
-  "c_region_name": "Москва",
-  "c_region_abbr": "г",
-  "c_region_fias": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
-  "c_district_name": "",
-  "c_district_abbr": "",
-  "c_district_fias": "",
-  "c_city_name": "",
-  "c_city_abbr": "",
-  "c_city_fias": "",
-  "c_community_name": "",
-  "c_community_abbr": "",
-  "c_community_fias": "",
-  "c_street_name": "Спартаковская",
-  "c_street_abbr": "пл",
-  "c_street_fias": "cd6717bf-1b64-4004-a042-ff1164313e7c",
-  "c_json_kvant": {
-    "fullName": "дом 10, строение 12",
-    "floor": "",
-    "house": "10",
-    "case": "",
-    "build": "12",
-    "liter": "",
-    "lend": "",
-    "block": "",
-    "pav": "",
-    "flat": "",
-    "office": "",
-    "kab": "",
-    "abon": "",
-    "sek": "",
-    "entr": "",
-    "room": "",
-    "hostel": "",
-    "munit": ""
-  },
-  "c_house_str": "дом 10, строение 12",
-  "c_addr_lost": "",
-  "c_status_error": "000038",
-  "c_house_error": "3",
-  "c_house_error_desc": "",
-  "c_kladr19": "",
-  "c_gninmb": "",
-  "c_okato": "",
-  "c_oktmo": "",
-  "c_aoguid": "",
-  "c_aolevel": "8",
-  "c_houseguid": "",
-  "c_timezone": "",
-  "c_coordinate": {
-    "c_lon": 37.677688,
-    "c_lat": 55.777322,
-    "c_level": 8
-  }
-}
-EOF;
-
-        $request = (new CleanRequest())
-            ->setQuery('москва спартаковская 10с12')
-            ->setCountryCode('RU');
-
-        $mock = static::createApiMockBuilder('/v1/clean/address/iqdq');
-        $mock->matchMethod(RequestMethod::POST)->reply()->withBody($json);
-
-        $client = TestClientFactory::createClient($mock->getClient());
-        $response = $client->address->cleanIqdq($request);
-        self::assertEquals($request->getQuery(), $response->getCAddressOriginal());
         $rspJson = static::$serializer->serialize($response, 'json');
         self::assertJsonStringEqualsJsonString($json, $rspJson);
     }

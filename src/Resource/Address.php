@@ -119,20 +119,4 @@ class Address extends AbstractResource
             GeoSearchResponse::class
         );
     }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws ServiceException
-     */
-    public function cleanHouse(CleanHouseRequest $cleanHouseRequest): CleanHouseResponse
-    {
-        return $this->send(
-            $this->createRequest(
-                'POST',
-                $this->uri->withPath('/v1/clean/house'),
-                $cleanHouseRequest
-            ),
-            CleanHouseResponse::class
-        );
-    }
 }

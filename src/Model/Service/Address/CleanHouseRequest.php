@@ -30,5 +30,4 @@ class CleanHouseRequest extends BaseModel
         $this->countryCode = $countryCode;
         return $this;
     }
-
 }
