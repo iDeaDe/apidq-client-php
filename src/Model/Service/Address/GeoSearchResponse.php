@@ -4,11 +4,12 @@ namespace ApiDQ\Model\Service\Address;
 
 use ApiDQ\Model\BaseModel;
 
-/**
- *
- */
-class Suggestion extends BaseModel
+class GeoSearchResponse extends BaseModel
 {
+    /**
+     * Оригинальный адрес
+     */
+    protected string $original = '';
     /**
      * Полный адрес строкой
      */
@@ -17,6 +18,10 @@ class Suggestion extends BaseModel
      * Строка с разобранным и стандартизированным адресом вместе с домовой частью
      */
     protected string $addressFull = '';
+    /**
+     * Оригинальный почтовый индекс
+     */
+    protected string $postcodeIn = '';
     /**
      * Почтовый индекс
      */
@@ -62,7 +67,33 @@ class Suggestion extends BaseModel
      * Информация о стране
      */
     protected ?Country $country = null;
+    /**
+     * Качество: действительный
+     */
+    protected bool $valid = false;
+    /**
+     * Код качества
+     */
+    protected ?Quality $quality = null;
     protected string $timezone = '';
+
+    /**
+     * @return string
+     */
+    public function getOriginal(): string
+    {
+        return $this->original;
+    }
+
+    /**
+     * @param string $original
+     * @return self
+     */
+    public function setOriginal(string $original): self
+    {
+        $this->original = $original;
+        return $this;
+    }
 
     /**
      * @return string
@@ -90,6 +121,24 @@ class Suggestion extends BaseModel
     public function setAddressFull(string $addressFull): self
     {
         $this->addressFull = $addressFull;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostcodeIn(): string
+    {
+        return $this->postcodeIn;
+    }
+
+    /**
+     * @param string $postcodeIn
+     * @return self
+     */
+    public function setPostcodeIn(string $postcodeIn): self
+    {
+        $this->postcodeIn = $postcodeIn;
         return $this;
     }
 
@@ -299,6 +348,42 @@ class Suggestion extends BaseModel
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->valid;
+    }
+
+    /**
+     * @param bool $valid
+     * @return self
+     */
+    public function setValid(bool $valid): self
+    {
+        $this->valid = $valid;
+        return $this;
+    }
+
+    /**
+     * @return Quality|null
+     */
+    public function getQuality(): ?Quality
+    {
+        return $this->quality;
+    }
+
+    /**
+     * @param Quality|null $quality
+     * @return self
+     */
+    public function setQuality(?Quality $quality): self
+    {
+        $this->quality = $quality;
         return $this;
     }
 

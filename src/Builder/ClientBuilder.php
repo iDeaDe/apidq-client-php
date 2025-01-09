@@ -35,6 +35,7 @@ class ClientBuilder implements BuilderInterface
     protected array $plugins = [];
     protected string $apiUrl = '';
     protected string $apiToken = '';
+    protected string $apiSecret = '';
     protected string $cacheDirPath = '';
     protected ?RequestFactoryInterface $requestFactory = null;
     protected ?StreamFactoryInterface $streamFactory = null;
@@ -93,6 +94,12 @@ class ClientBuilder implements BuilderInterface
         return $this;
     }
 
+    public function setApiSecret(string $apiSecret): self
+    {
+        $this->apiSecret = $apiSecret;
+        return $this;
+    }
+
     /**
      * @param CacheItemPoolInterface|null $cache
      * @return self
@@ -145,7 +152,7 @@ class ClientBuilder implements BuilderInterface
         $streamFactory = $this->streamFactory ?: Psr17FactoryDiscovery::findStreamFactory();
         $serializer = $this->serializer ?: SerializerFactory::createSerializer();
 
-        $this->buildAuthPlugin($this->apiToken);
+        $this->buildAuthPlugin($this->apiToken, $this->apiSecret);
         $this->buildCachePlugin($streamFactory);
         $this->buildLoggerPlugin();
 
@@ -168,12 +175,11 @@ class ClientBuilder implements BuilderInterface
         return $client;
     }
 
-    protected function buildAuthPlugin(string $apiToken): void
+    protected function buildAuthPlugin(string $apiToken, string $apiSecret): void
     {
-        if (!empty($apiToken)) {
-            $this->plugins[] = new AuthenticationPlugin(
-                new Header('Authorization', $apiToken)
-            );
+        if (!empty($apiToken) && !empty($apiSecret)) {
+            $this->plugins[] = new AuthenticationPlugin(new Header('Authorization', $apiToken));
+            $this->plugins[] = new AuthenticationPlugin(new Header('X-Apidq-Secret', $apiSecret));
         }
     }
 
@@ -217,6 +223,9 @@ class ClientBuilder implements BuilderInterface
         }
         if ($this->apiToken === '') {
             throw new BuilderException('The "apiToken" parameter is required');
+        }
+        if ($this->apiSecret === '') {
+            throw new BuilderException('The "apiSecret" parameter is required');
         }
         if ($this->cache !== null && $this->cacheDirPath !== '') {
             throw new BuilderException('Specify one "cache" or "cacheDirPath"');

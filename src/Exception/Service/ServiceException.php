@@ -11,7 +11,6 @@ use Throwable;
  */
 class ServiceException extends Exception
 {
-
     protected ErrorResponse $errorResponse;
 
     /**

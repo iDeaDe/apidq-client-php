@@ -11,7 +11,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 class Name extends AbstractResource
 {
-
     /**
      * @param CleanRequest $cleanRequest
      * @return CleanResponse

@@ -15,6 +15,10 @@ class CleanResponse extends BaseModel
      */
     protected string $address = '';
     /**
+     * Строка с разобранным и стандартизированным адресом вместе с домовой частью
+     */
+    protected string $addressFull = '';
+    /**
      * Оригинальный почтовый индекс
      */
     protected string $postcodeIn = '';
@@ -30,6 +34,7 @@ class CleanResponse extends BaseModel
      * Информация о районе региона
      */
     protected ?Part $area = null;
+    protected ?Part $municipal = null;
     /**
      * Информация о городе
      */
@@ -70,6 +75,7 @@ class CleanResponse extends BaseModel
      * Код качества
      */
     protected ?Quality $quality = null;
+    protected string $timezone = '';
 
     /**
      * @return string
@@ -104,6 +110,17 @@ class CleanResponse extends BaseModel
     public function setAddress(string $address): self
     {
         $this->address = $address;
+        return $this;
+    }
+
+    public function getAddressFull(): string
+    {
+        return $this->addressFull;
+    }
+
+    public function setAddressFull(string $addressFull): self
+    {
+        $this->addressFull = $addressFull;
         return $this;
     }
 
@@ -176,6 +193,17 @@ class CleanResponse extends BaseModel
     public function setArea(?Part $area): self
     {
         $this->area = $area;
+        return $this;
+    }
+
+    public function getMunicipal(): ?Part
+    {
+        return $this->municipal;
+    }
+
+    public function setMunicipal(?Part $municipal): self
+    {
+        $this->municipal = $municipal;
         return $this;
     }
 
@@ -356,6 +384,17 @@ class CleanResponse extends BaseModel
     public function setQuality(?Quality $quality): self
     {
         $this->quality = $quality;
+        return $this;
+    }
+
+    public function getTimezone(): string
+    {
+        return $this->timezone;
+    }
+
+    public function setTimezone(string $timezone): self
+    {
+        $this->timezone = $timezone;
         return $this;
     }
 }

@@ -23,6 +23,14 @@ class Codes extends BaseModel
      * OSM-код - код из OpenStreetMap
      */
     protected string $osm = '';
+    /**
+     * Код в базе ГАР
+     */
+    protected string $gar = '';
+    /**
+     * Код в базе КЛАДР
+     */
+    protected string $kladr = '';
 
     /**
      * @return string
@@ -75,6 +83,28 @@ class Codes extends BaseModel
     public function setOsm(string $osm): self
     {
         $this->osm = $osm;
+        return $this;
+    }
+
+    public function getGar(): string
+    {
+        return $this->gar;
+    }
+
+    public function setGar(string $gar): self
+    {
+        $this->gar = $gar;
+        return $this;
+    }
+
+    public function getKladr(): string
+    {
+        return $this->kladr;
+    }
+
+    public function setKladr(string $kladr): self
+    {
+        $this->kladr = $kladr;
         return $this;
     }
 }

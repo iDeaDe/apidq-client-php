@@ -31,6 +31,7 @@ class ClientBuilderTest extends TestCase
             ClientBuilder::create()
                 ->setApiUrl(TestConfig::getApiUrl())
                 ->setApiToken(TestConfig::getApiToken())
+                ->setApiSecret(TestConfig::getApiSecret())
                 ->build();
         } catch (BuilderException $e) {
             self::fail($e->getMessage());
@@ -39,6 +40,7 @@ class ClientBuilderTest extends TestCase
             ClientBuilder::create()
                 ->setApiUrl(TestConfig::getApiUrl())
                 ->setApiToken(TestConfig::getApiToken())
+                ->setApiSecret(TestConfig::getApiSecret())
                 ->setCache(new FilesystemAdapter())
                 ->setCacheDirPath(TestConfig::getCacheDir())
                 ->build();
@@ -55,6 +57,7 @@ class ClientBuilderTest extends TestCase
         $client = ClientBuilder::create()
             ->setApiUrl(TestConfig::getApiUrl())
             ->setApiToken(TestConfig::getApiToken())
+            ->setApiSecret(TestConfig::getApiSecret())
             ->build();
         /** @noinspection UnnecessaryAssertionInspection */
         self::assertInstanceOf(Client::class, $client);
@@ -69,6 +72,7 @@ class ClientBuilderTest extends TestCase
         $client = ClientBuilder::create()
             ->setApiUrl(TestConfig::getApiUrl())
             ->setApiToken(TestConfig::getApiToken())
+            ->setApiSecret(TestConfig::getApiSecret())
             ->setLogger($logger)
             ->build();
         self::assertNotEmpty($client);
@@ -82,6 +86,7 @@ class ClientBuilderTest extends TestCase
         $client = ClientBuilder::create()
             ->setApiUrl(TestConfig::getApiUrl())
             ->setApiToken(TestConfig::getApiToken())
+            ->setApiSecret(TestConfig::getApiSecret())
             ->setCache(new FilesystemAdapter())
             ->build();
         self::assertNotEmpty($client);
@@ -95,6 +100,7 @@ class ClientBuilderTest extends TestCase
         $client = ClientBuilder::create()
             ->setApiUrl(TestConfig::getApiUrl())
             ->setApiToken(TestConfig::getApiToken())
+            ->setApiSecret(TestConfig::getApiSecret())
             ->setCacheDirPath(TestConfig::getCacheDir())
             ->build();
         self::assertNotEmpty($client);

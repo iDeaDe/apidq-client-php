@@ -6,9 +6,9 @@ use ApiDQ\Model\BaseModel;
 
 class CleanHouseResponse extends BaseModel
 {
-    protected string $original;
-    protected string $postcodeIn;
-    protected HouseDetails $houseDetails;
+    protected string $original = '';
+    protected string $postcodeIn = '';
+    protected ?HouseDetails $houseDetails = null;
 
     public function getOriginal(): string
     {
@@ -32,12 +32,12 @@ class CleanHouseResponse extends BaseModel
         return $this;
     }
 
-    public function getHouseDetails(): HouseDetails
+    public function getHouseDetails(): ?HouseDetails
     {
         return $this->houseDetails;
     }
 
-    public function setHouseDetails(HouseDetails $houseDetails): self
+    public function setHouseDetails(?HouseDetails $houseDetails): self
     {
         $this->houseDetails = $houseDetails;
         return $this;

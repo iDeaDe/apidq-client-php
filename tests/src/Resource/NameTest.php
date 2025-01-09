@@ -12,7 +12,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 class NameTest extends AbstractResourceTestCase
 {
-
     /**
      * @throws ClientExceptionInterface
      * @throws ServiceException
@@ -28,7 +27,6 @@ class NameTest extends AbstractResourceTestCase
   "middleName": "Владимирович",
   "gender": "MALE",
   "unparsedParts": [],
-  "possible": true,
   "valid": true
 }
 EOF;
