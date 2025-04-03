@@ -13,15 +13,17 @@ class Logger
 
     protected LoggerInterface $logger;
     /**
-     * @var array<string,array>
+     * @var array<string,array{enabled: bool, formatter: ?Formatter, namespace: ?string}>
      */
     protected array $options = [
         self::LOGGER_SCOPE_TRANSPORT  => [
             'enabled'   => true,
             'formatter' => null,
+            'namespace' => null,
         ],
         self::LOGGER_SCOPE_FILE_CACHE => [
             'enabled'   => true,
+            'formatter' => null,
             'namespace' => 'apidq'
         ],
     ];
@@ -61,7 +63,7 @@ class Logger
     }
 
     /**
-     * @return array<string,array<string,string>>
+     * @return array<string,array{enabled: bool, formatter: ?Formatter, namespace: ?string}>
      */
     public function getOptions(): array
     {

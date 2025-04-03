@@ -23,10 +23,6 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Serializer\SerializerInterface;
 
-/**
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- */
 class ClientBuilder implements BuilderInterface
 {
     /**
@@ -194,7 +190,7 @@ class ClientBuilder implements BuilderInterface
             $namespace = '';
             if ($this->logger !== null && $this->logger->getOptions()[Logger::LOGGER_SCOPE_FILE_CACHE]['enabled']) {
                 $logger = $this->logger->getPsrLogger();
-                $namespace = $this->logger->getOptions()[Logger::LOGGER_SCOPE_FILE_CACHE]['namespace'];
+                $namespace = $this->logger->getOptions()[Logger::LOGGER_SCOPE_FILE_CACHE]['namespace'] ?? '';
             }
             $cache = new FilesystemAdapter($namespace, 0, $this->cacheDirPath);
             if ($logger !== null) {

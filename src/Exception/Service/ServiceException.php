@@ -23,7 +23,7 @@ class ServiceException extends Exception
         ErrorResponse $errorResponse,
         string $message = "",
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         $this->errorResponse = $errorResponse;
         parent::__construct($message, $code, $previous);

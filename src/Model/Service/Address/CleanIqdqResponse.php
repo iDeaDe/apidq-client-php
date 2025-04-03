@@ -5,11 +5,6 @@ namespace ApiDQ\Model\Service\Address;
 use ApiDQ\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-/**
- * @SuppressWarnings(PHPMD.ExcessivePublicCount)
- * @SuppressWarnings(PHPMD.TooManyFields)
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- */
 class CleanIqdqResponse extends BaseModel
 {
     /**

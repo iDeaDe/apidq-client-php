@@ -10,6 +10,8 @@ use ApiDQ\Model\Service\Address\CleanRequest;
 use ApiDQ\Model\Service\Address\CleanResponse;
 use ApiDQ\Model\Service\Address\GeoSearchRequest;
 use ApiDQ\Model\Service\Address\GeoSearchResponse;
+use ApiDQ\Model\Service\Address\IdSearchCenterRequest;
+use ApiDQ\Model\Service\Address\IdSearchCenterResponse;
 use ApiDQ\Model\Service\Address\IdSearchRequest;
 use ApiDQ\Model\Service\Address\IdSearchResponse;
 use ApiDQ\Model\Service\Address\SuggestRequest;
@@ -101,6 +103,18 @@ class Address extends AbstractResource
                 $idSearchRequest
             ),
             IdSearchResponse::class
+        );
+    }
+
+    public function idSearchCenter(IdSearchCenterRequest $idSearchCenterRequest): IdSearchCenterResponse
+    {
+        return $this->send(
+            $this->createRequest(
+                'POST',
+                $this->uri->withPath('/v1/idsearch/address/center'),
+                $idSearchCenterRequest
+            ),
+            IdSearchCenterResponse::class
         );
     }
 

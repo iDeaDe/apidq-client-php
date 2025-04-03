@@ -7,13 +7,13 @@ use ApiDQ\Exception\Service\ServiceException;
 use ApiDQ\Model\Service\Address\CleanHouseRequest;
 use ApiDQ\Model\Service\Address\CleanRequest;
 use ApiDQ\Model\Service\Address\GeoSearchRequest;
+use ApiDQ\Model\Service\Address\IdSearchCenterRequest;
 use ApiDQ\Model\Service\Address\IdSearchRequest;
 use ApiDQ\Model\Service\Address\SuggestRequest;
 use ApiDQ\TestUtils\Factory\TestClientFactory;
 use ApiDQ\TestUtils\TestCase\AbstractResourceTestCase;
 use Pock\Enum\RequestMethod;
 use Psr\Http\Client\ClientExceptionInterface;
-use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 
 class AddressTest extends AbstractResourceTestCase
 {
@@ -1085,6 +1085,166 @@ EOF;
 
         $client = TestClientFactory::createClient($mock->getClient());
         $response = $client->address->idSearch($request);
+        self::assertEquals($request->getQuery(), $response->getOriginal());
+        $rspJson = static::$serializer->serialize($response, 'json');
+        self::assertJsonStringEqualsJsonString($json, $rspJson);
+    }
+
+    public function testIdSearchCenter(): void
+    {
+        $json = <<<EOF
+{
+    "original": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+    "addressFull": "г Москва, пл Красная, дом 1",
+    "address": "г Москва, пл Красная",
+    "postcodeIn": "",
+    "postcode": "109012",
+    "region": {
+        "fullName": "г Москва",
+        "name": "Москва",
+        "type": "г",
+        "codes": {
+            "fias": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
+            "ga": "RU0770000000000000000000000",
+            "osm": "R102269",
+            "gar": "1405113",
+            "kladr": "7700000000000"
+        }
+    },
+    "area": {
+        "fullName": "",
+        "name": "",
+        "type": "",
+        "codes": {
+            "fias": "",
+            "ga": "",
+            "osm": "",
+            "gar": "",
+            "kladr": ""
+        }
+    },
+    "municipal": null,
+    "city": {
+        "fullName": "",
+        "name": "",
+        "type": "",
+        "codes": {
+            "fias": "",
+            "ga": "",
+            "osm": "",
+            "gar": "",
+            "kladr": ""
+        }
+    },
+    "cityArea": {
+        "fullName": "",
+        "name": "",
+        "type": "",
+        "codes": {
+            "fias": "",
+            "ga": "",
+            "osm": "",
+            "gar": "",
+            "kladr": ""
+        }
+    },
+    "settlement": {
+        "fullName": "",
+        "name": "",
+        "type": "",
+        "codes": {
+            "fias": "",
+            "ga": "",
+            "osm": "",
+            "gar": "",
+            "kladr": ""
+        }
+    },
+    "planStructure": {
+        "fullName": "",
+        "name": "",
+        "type": "",
+        "codes": {
+            "fias": "",
+            "ga": "",
+            "osm": "",
+            "gar": "",
+            "kladr": ""
+        }
+    },
+    "street": {
+        "fullName": "пл Красная",
+        "name": "Красная",
+        "type": "пл",
+        "codes": {
+            "fias": "8e39d017-db1c-413f-ae77-5f0d3b9e7ee9",
+            "ga": "RU0770000000000000000001575",
+            "osm": "",
+            "gar": "1447011",
+            "kladr": "77000000000157500"
+        }
+    },
+    "houseDetails": {
+        "fullName": "дом 1",
+        "house": "1",
+        "case": "",
+        "build": "",
+        "liter": "",
+        "lend": "",
+        "constr": "",
+        "stead": "",
+        "flat": "",
+        "office": "",
+        "room": "",
+        "kab": "",
+        "place": "",
+        "entr": "",
+        "floor": "",
+        "block": "",
+        "pav": "",
+        "sek": "",
+        "abon": "",
+        "munit": "",
+        "codes": {
+            "fias": "0c2c345f-cd7b-4011-9f3b-65095ab4c186",
+            "ga": "",
+            "osm": "",
+            "gar": "32076210",
+            "kladr": ""
+        }
+    },
+    "coordinates": {
+        "latitude": 55.7552944,
+        "longitude": 37.61768219
+    },
+    "country": {
+        "name": "Россия",
+        "alpha2": "RU",
+        "alpha3": "RUS",
+        "numeric": 643
+    },
+    "valid": true,
+    "quality": {
+        "unique": 0,
+        "actuality": 0,
+        "undefined": 0,
+        "level": 8,
+        "house": 3,
+        "geo": 8
+    },
+    "timezone": "UTC+3"
+}
+EOF;
+
+        $request = (new IdSearchCenterRequest())
+            ->setQuery('0c5b2444-70a0-4932-980c-b4dc0d3f02b5')
+            ->setCountryCode('RU');
+
+        $mock = static::createApiMockBuilder('/v1/idsearch/address/center');
+        $mock->matchMethod(RequestMethod::POST)->reply()->withBody($json);
+
+        $client = TestClientFactory::createClient($mock->getClient());
+        $response = $client->address->idSearchCenter($request);
         self::assertEquals($request->getQuery(), $response->getOriginal());
         $rspJson = static::$serializer->serialize($response, 'json');
         self::assertJsonStringEqualsJsonString($json, $rspJson);
