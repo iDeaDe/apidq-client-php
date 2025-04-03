@@ -59,9 +59,10 @@ abstract class AbstractResource
     }
 
     /**
+     * @template T
      * @param RequestInterface $request
-     * @param string $responseClass
-     * @return mixed
+     * @param class-string<T> $responseClass
+     * @return T
      * @throws ServiceException
      * @throws ClientExceptionInterface
      */

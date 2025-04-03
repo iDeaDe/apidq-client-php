@@ -2,9 +2,6 @@
 
 namespace ApiDQ\Model;
 
-/**
- * @SuppressWarnings(PHPMD.NumberOfChildren)
- */
 class BaseModel
 {
     /**
