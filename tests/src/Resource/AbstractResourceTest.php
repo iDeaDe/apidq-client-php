@@ -18,9 +18,9 @@ class AbstractResourceTest extends AbstractResourceTestCase
     {
         $json = <<<'EOF'
 {
-  "code": 3,
-  "message": "query: значение не может быть пустым.",
-  "details": []
+  "code": "VALIDATION_ERROR",
+  "message": "Ошибка валидации",
+  "description": "query: значение не может быть пустым."
 }
 EOF;
 
@@ -35,8 +35,9 @@ EOF;
             $client->address->clean($request);
             self::fail('response returned, but need exception ServiceException');
         } catch (ServiceException $e) {
-            self::assertEquals(3, $e->getErrorResponse()->getCode());
-            self::assertEquals('query: значение не может быть пустым.', $e->getErrorResponse()->getMessage());
+            self::assertEquals('VALIDATION_ERROR', $e->getErrorResponse()->getCode());
+            self::assertEquals('Ошибка валидации', $e->getErrorResponse()->getMessage());
+            self::assertEquals('query: значение не может быть пустым.', $e->getErrorResponse()->getDescription());
         }
     }
 }
